@@ -18,16 +18,21 @@ while true; do
 			read -p "Please Enter Employee Number " enumber
 			read -p "Please Enter Employee Phone no " phone
 			echo "$name $enumber $phone" >> employeeDetails.txt
-			echo "Employee created successfully!!"
+			echo "Employee record created successfully!!"
 			;;
-		2)
+		2)      read -p "Please Enter Employee Number " snum
+			sed "/ $snum /d" employeeDetails.txt > employeeDetails1.txt
+			mv -f employeeDetails1.txt employeeDetails.txt
+			echo "Employee record deleted successfully!!" 
 			;;
 		3)	read -p "Please Enter Employee Number " snum
 			grep $snum -w employeeDetails.txt
 			;;
 	        4)     cat employeeDetails.txt
 			;;
-		5)
+		5)      sort -k 2n employeeDetails.txt > employeeDetails1.txt
+			mv -f employeeDetails1.txt employeeDetails.txt
+			echo "Successfully Sorted"
 			;;
 		
 		6)
