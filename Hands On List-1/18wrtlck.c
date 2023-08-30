@@ -33,6 +33,7 @@ int main(void){
 	write(fd,&currRecord,sizeof(currRecord));
 	printf("Enter to unlock\n");
 	getchar();
+	getchar();
 	printf("Unlocked\n");
 	lock.l_type=F_UNLCK;
 	fcntl(fd,F_SETLK,&lock);
