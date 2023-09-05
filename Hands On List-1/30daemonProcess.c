@@ -19,4 +19,4 @@ int main(void){
 	else
 		exit(0);
 }
-
+// ps -el | grep <cpid>
