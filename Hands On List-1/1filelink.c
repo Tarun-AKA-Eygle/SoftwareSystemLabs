@@ -1,3 +1,12 @@
+/*
+============================================================================
+Name : 1filelink.c
+Author : Tarun Sharma
+Description : System call to create soft link,hard link,FIFO.
+Date: 28th Aug, 2023.
+============================================================================
+*/
+
 #include<stdio.h>
 #include<unistd.h>
 #include<sys/types.h>

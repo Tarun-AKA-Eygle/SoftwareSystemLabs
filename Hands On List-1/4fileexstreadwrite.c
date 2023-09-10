@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 int main(){
-	int op = open("tempcreatefile1",O_EXCL);
+	int op = open("tempcreatefile1",O_CREAT|O_EXCL);
 	printf("%d",op);
 	return 0;
 }
