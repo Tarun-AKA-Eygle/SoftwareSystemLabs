@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 15.c
+Author : Tarun Sharma
+Description : A program to display the environmental variable of the user.
+Date: 22th Aug, 2023.
+============================================================================
+*/
 #include <unistd.h>
 #include <stdio.h>
 

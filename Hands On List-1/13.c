@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 13.c
+Author : Tarun Sharma
+Description : A program to wait for a STDIN for 10 seconds using select.
+Date: 22th Aug, 2023.
+============================================================================
+*/
 #include <stdio.h>
        #include <stdlib.h>
        #include <sys/select.h>

@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 24orphan.c
+Author : Tarun Sharma
+Description : A program to create an orphan process.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>

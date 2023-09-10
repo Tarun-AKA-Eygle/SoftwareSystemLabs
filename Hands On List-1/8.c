@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 8.c
+Author : Tarun Sharma
+Description : A program to open a file in read only mode, read line by line and display each line as it is read.
+Date: 22th Aug, 2023.
+============================================================================
+*/
 #include <sys/types.h>
        #include <sys/stat.h>
        #include <fcntl.h>

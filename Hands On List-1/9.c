@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 9.c
+Author : Tarun Sharma
+Description : A program to print the information about a given file.
+Date: 22th Aug, 2023.
+============================================================================
+*/
 #include <sys/types.h>
        #include <sys/stat.h>
        #include <stdint.h>

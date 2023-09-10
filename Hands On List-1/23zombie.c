@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 23zombie.c
+Author : Tarun Sharma
+Description : A program to create a Zombie state of the running program.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>

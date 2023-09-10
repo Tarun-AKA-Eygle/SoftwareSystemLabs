@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 12.c
+Author : Tarun Sharma
+Description : A program to find out the opening mode of a file.
+Date: 22th Aug, 2023.
+============================================================================
+*/
  #include <sys/types.h>
 
 #include <unistd.h>

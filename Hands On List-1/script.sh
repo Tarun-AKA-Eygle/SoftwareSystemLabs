@@ -5,14 +5,14 @@ read -p "Enter file name " filename
 
 read -p "Enter the description " desp
 
-read -p "Enter date " date
+#read -p "Enter date " date
 
 { echo -n "/*
 ============================================================================
 Name : $filename
 Author : Tarun Sharma
 Description : $desp
-Date: $date
+Date: 5th Sep, 2023.
 ============================================================================
 */
 "; cat $filename; } >test.c

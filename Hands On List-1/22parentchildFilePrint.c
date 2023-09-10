@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 22parentchildFilePrint.c
+Author : Tarun Sharma
+Description : A program, open a file, call fork, and then write to the file by both the child as well as the parent processes.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdio.h>

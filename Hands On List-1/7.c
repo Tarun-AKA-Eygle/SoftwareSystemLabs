@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 7.c
+Author : Tarun Sharma
+Description : A program to copy file1 into file2.
+Date: 22th Aug, 2023.
+============================================================================
+*/
 #include <sys/types.h>
        #include <sys/stat.h>
        #include <fcntl.h>

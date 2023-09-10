@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 25childProcess.c
+Author : Tarun Sharma
+Description : A program to create three child processes and parent should wait for a particular child.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <sys/wait.h>
 #include <stdint.h>
 #include <stdlib.h>

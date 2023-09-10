@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 20niceCmd.c
+Author : Tarun Sharma
+Description : A program to find out and modify the priority of your running program.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <unistd.h>
 #include <sys/time.h>
 #include <sys/resource.h>

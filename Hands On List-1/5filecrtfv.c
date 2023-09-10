@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 5filecrtfv.c
+Author : Tarun Sharma
+Description : A program to create five new files with infinite loop and execute the program in the background and check the file descriptor table at /proc/pid/fd.
+Date: 12th Aug, 2023.
+============================================================================
+*/
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>

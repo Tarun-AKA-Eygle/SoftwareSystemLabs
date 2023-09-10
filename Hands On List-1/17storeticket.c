@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 17storeticket.c
+Author : Tarun Sharma
+Description : A program to simulate online ticket reservation.
+Date: 25th Aug, 2023.
+============================================================================
+*/
 #include<stdio.h>
 #include <unistd.h>
 #include <fcntl.h>

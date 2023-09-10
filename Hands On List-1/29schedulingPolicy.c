@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 29schedulingPolicy.c
+Author : Tarun Sharma
+Description : A program to get scheduling policy and modify the scheduling policy.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <sched.h>
 #include <stdio.h>
 #include <sys/types.h>

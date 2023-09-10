@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 11.c
+Author : Tarun Sharma
+Description : A program to open a file, duplicate the file descriptor and append the file with both the descriptors.
+Date: 22th Aug, 2023.
+============================================================================
+*/
 #include <fcntl.h>              /* Obtain O_* constant definitions */
 #include <unistd.h>
 #include <stdio.h>

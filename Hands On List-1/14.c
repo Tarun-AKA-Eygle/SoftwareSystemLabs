@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 14.c
+Author : Tarun Sharma
+Description : A program to find the type of a file.
+Date: 22th Aug, 2023.
+============================================================================
+*/
 #include <sys/types.h>
        #include <sys/stat.h>
        #include <stdint.h>

@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 18readlckFinal.c
+Author : Tarun Sharma
+Description : A program to perform Record locking.
+Date: 25th Aug, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

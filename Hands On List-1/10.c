@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 10.c
+Author : Tarun Sharma
+Description : A program to open a file with read write mode, write 10 bytes, move the file pointer by 10 bytes (use lseek) and write again 10 bytes.
+Date: 22th Aug, 2023.
+============================================================================
+*/
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdio.h>

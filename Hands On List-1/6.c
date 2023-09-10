@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 6.c
+Author : Tarun Sharma
+Description : A program to take input from STDIN and display on STDOUT using read/write system calls.
+Date: 22th Aug, 2023.
+============================================================================
+*/
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
