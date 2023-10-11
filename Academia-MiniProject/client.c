@@ -8,8 +8,50 @@
 #define SERVER_PORT 8081
 #define BUFFER_SIZE 1024
 
+int client_socket;
+
+int takeIntInput(){
+    char buffer[BUFFER_SIZE];
+    int choice;
+    ssize_t bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer));
+
+    if (bytes_read == -1) {
+        perror("read");
+        return 1;
+    }
+
+    // Null-terminate the string
+    buffer[bytes_read] = '\0';
+
+    // Convert the string to an integer using atoi
+    choice = atoi(buffer);
+    return choice;
+}
+
+void admin(){
+    int flag=1;
+    while(flag){
+        system("clear");
+        adminMenu();
+        int choice = takeIntInput();
+        switch (choice)
+        {
+        case 9:
+            char str[] = "Successfully logout out!\n";
+            write(STDOUT_FILENO,str,strlen(str));
+            send(client_socket, &choice, sizeof(choice), 0);
+            flag=0;
+            break;
+        case 1:
+            
+            break;
+        default:
+        }
+    }
+}
+
 int main() {
-    int client_socket;
+    
     struct sockaddr_in server_addr;
     char buffer[BUFFER_SIZE];
     ssize_t bytes_received;
@@ -33,19 +75,7 @@ int main() {
     }
     menu();
     // Send data to the server
-        int choice;
-        bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer));
-
-        if (bytes_read == -1) {
-            perror("read");
-            return 1;
-        }
-
-        // Null-terminate the string
-        buffer[bytes_read] = '\0';
-
-        // Convert the string to an integer using atoi
-        choice = atoi(buffer);
+        int choice = takeIntInput();
         send(client_socket, &choice, sizeof(choice), 0);
         
         login();
@@ -61,20 +91,18 @@ int main() {
 	    write(STDOUT_FILENO,str,strlen(str));
 
         
-        bytes_received = recv(client_socket, &choice, sizeof(choice), 0);
-
+        recv(client_socket, &choice, sizeof(choice), 0);
+        choice=1;
         switch (choice)
         {
         case 1:
             admin();
-
             break;
         case 2:
             break;
         case 3:
             break;
         default:
-            break;
         }
     
 

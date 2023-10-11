@@ -9,10 +9,28 @@
 #define BUFFER_SIZE 1024
 #define PORT 8081 
 
+int server_socket, client_socket;
+
 void *handle_client(void *arg);
 
+void admin(){
+    int flag=1;
+    while(flag){
+        int ch;
+        ssize_t bytes_received = recv(client_socket, &ch, sizeof(ch), 0);
+        switch (ch)
+        {
+        case 9:
+            flag=0;
+            break;
+        
+        default:
+        }
+    }
+}
+
 int main() {
-    int server_socket, client_socket;
+    
     struct sockaddr_in server_addr, client_addr;
     socklen_t client_addr_len = sizeof(client_addr);
     pthread_t tid[MAX_CLIENTS];
@@ -88,7 +106,22 @@ void *handle_client(void *arg) {
     // char msg[BUFFER_SIZE];
     // snprintf(msg, sizeof(msg), "%d", choice);
     send(client_socket, &choice, sizeof(choice), 0);
+
     
+
+    switch (choice)
+    {
+    case 1:
+        admin();
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    default:
+    }
+    
+
     close(client_socket);
     pthread_exit(NULL);
 }
