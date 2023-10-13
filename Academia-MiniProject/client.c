@@ -1,111 +1,101 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include "mainMenu.h"
-#define SERVER_IP "127.0.0.1"
-#define SERVER_PORT 8081
-#define BUFFER_SIZE 1024
+#include <stdio.h>      // Import for `printf` & `perror` functions
+#include <errno.h>      // Import for `errno` variable
+#include <fcntl.h>      // Import for `fcntl` functions
+#include <unistd.h>     // Import for `fork`, `fcntl`, `read`, `write`, `lseek, `_exit` functions
+#include <sys/types.h>  // Import for `socket`, `bind`, `listen`, `connect`, `fork`, `lseek` functions
+#include <sys/socket.h> // Import for `socket`, `bind`, `listen`, `connect` functions
+#include <netinet/ip.h> // Import for `sockaddr_in` stucture
+#include <string.h>     // Import for string functions
 
-int client_socket;
+void connection_handler(int sockFD); // Handles the read & write operations to the server
 
-int takeIntInput(){
-    char buffer[BUFFER_SIZE];
-    int choice;
-    ssize_t bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer));
+void main()
+{
+    int socketFileDescriptor, connectStatus;
+    struct sockaddr_in serverAddress;
+    struct sockaddr server;
 
-    if (bytes_read == -1) {
-        perror("read");
-        return 1;
+    socketFileDescriptor = socket(AF_INET, SOCK_STREAM, 0);
+    if (socketFileDescriptor == -1)
+    {
+        perror("Error while creating server socket!");
+        _exit(0);
     }
 
-    // Null-terminate the string
-    buffer[bytes_read] = '\0';
+    serverAddress.sin_family = AF_INET;                // IPv4
+    serverAddress.sin_port = htons(8081);              // Server will listen to port 8080
+    serverAddress.sin_addr.s_addr = htonl(INADDR_ANY); // Binds the socket to all interfaces
 
-    // Convert the string to an integer using atoi
-    choice = atoi(buffer);
-    return choice;
+    connectStatus = connect(socketFileDescriptor, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
+    if (connectStatus == -1)
+    {
+        perror("Error while connecting to server!");
+        close(socketFileDescriptor);
+        _exit(0);
+    }
+
+    connection_handler(socketFileDescriptor);
+
+    close(socketFileDescriptor);
 }
+// Handles the read & write operations w the server
+void connection_handler(int sockFD)
+{
+    char readBuffer[10000], writeBuffer[10000]; // A buffer used for reading from / writting to the server
+    ssize_t readBytes, writeBytes;            // Number of bytes read from / written to the socket
 
-void admin(){
-    int flag=1;
-    while(flag){
-        system("clear");
-        adminMenu();
-        int choice = takeIntInput();
-        switch (choice)
+    char tempBuffer[10000];
+
+    do
+    {
+        bzero(readBuffer, sizeof(readBuffer)); // Empty the read buffer
+        bzero(tempBuffer, sizeof(tempBuffer));
+        readBytes = read(sockFD, readBuffer, sizeof(readBuffer));
+        if (readBytes == -1)
+            perror("Error while reading from client socket!");
+        else if (readBytes == 0)
+            printf("No error received from server! Closing the connection to the server now!\n");
+        else if (strchr(readBuffer, '^') != NULL)
         {
-        case 9:
-            char str[] = "Successfully logout out!\n";
-            write(STDOUT_FILENO,str,strlen(str));
-            send(client_socket, &choice, sizeof(choice), 0);
-            flag=0;
-            break;
-        case 1:
-            
-            break;
-        default:
+            // Skip read from client
+            strncpy(tempBuffer, readBuffer, strlen(readBuffer) - 1);
+            printf("%s\n", tempBuffer);
+            writeBytes = write(sockFD, "^", strlen("^"));
+            if (writeBytes == -1)
+            {
+                perror("Error while writing to client socket!");
+                break;
+            }
         }
-    }
-}
-
-int main() {
-    
-    struct sockaddr_in server_addr;
-    char buffer[BUFFER_SIZE];
-    ssize_t bytes_received;
-    ssize_t bytes_read;
-    // Create socket
-    client_socket = socket(AF_INET, SOCK_STREAM, 0);
-    if (client_socket == -1) {
-        perror("Socket creation error");
-        exit(1);
-    }
-
-    // Initialize server address structure
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(SERVER_PORT);
-    server_addr.sin_addr.s_addr = inet_addr(SERVER_IP);
-
-    // Connect to server
-    if (connect(client_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
-        perror("Connection error");
-        exit(1);
-    }
-    menu();
-    // Send data to the server
-        int choice = takeIntInput();
-        send(client_socket, &choice, sizeof(choice), 0);
-        
-        login();
-        fgets(buffer, sizeof(buffer), stdin);
-        send(client_socket, buffer, strlen(buffer), 0);
-
-        password();
-        fgets(buffer, sizeof(buffer), stdin);
-        send(client_socket, buffer, strlen(buffer), 0);
-
-
-        char str[]="Login Successful!\n";
-	    write(STDOUT_FILENO,str,strlen(str));
-
-        
-        recv(client_socket, &choice, sizeof(choice), 0);
-        choice=1;
-        switch (choice)
+        else if (strchr(readBuffer, '$') != NULL)
         {
-        case 1:
-            admin();
+            // Server sent an error message and is now closing it's end of the connection
+            strncpy(tempBuffer, readBuffer, strlen(readBuffer) - 2);
+            printf("%s\n", tempBuffer);
+            printf("Closing the connection to the server now!\n");
             break;
-        case 2:
-            break;
-        case 3:
-            break;
-        default:
         }
-    
+        else
+        {
+            bzero(writeBuffer, sizeof(writeBuffer)); // Empty the write buffer
 
-    close(client_socket);
-    return 0;
+            if (strchr(readBuffer, '#') != NULL)
+                strcpy(writeBuffer, getpass(readBuffer));
+            else
+            {
+                printf("%s\n", readBuffer);
+                scanf("%[^\n]%*c", writeBuffer); // Take user input!
+            }
+
+            writeBytes = write(sockFD, writeBuffer, strlen(writeBuffer));
+            if (writeBytes == -1)
+            {
+                perror("Error while writing to client socket!");
+                printf("Closing the connection to the server now!\n");
+                break;
+            }
+        }
+    } while (readBytes > 0);
+
+    close(sockFD);
 }
