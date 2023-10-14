@@ -10,7 +10,8 @@ struct Student
     char email[30];
     char address[50];
     int age;
-    char password[30];
+    char password[1000];
+    int active;
 };
 
 #endif

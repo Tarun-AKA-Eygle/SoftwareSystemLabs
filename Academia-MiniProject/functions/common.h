@@ -16,6 +16,7 @@
 #include "../record-struct/transaction.h"
 
 #include "../record-struct/student.h"
+#include "../record-struct/faculty.h"
 
 #include "./admin-credentials.h"
 #include "./server-constants.h"
@@ -25,10 +26,129 @@
 bool login_handler(bool isAdmin, int connFD, struct Customer *ptrToCustomer);
 bool get_account_details(int connFD, struct Account *customerAccount);
 bool get_customer_details(int connFD, int customerID);
-
+bool login_handler_student(int connFD, struct Student *ptrToStudent);
 // =====================================================
 
 // Function Definition =================================
+bool login_handler_student(int connFD, struct Student *ptrToStudentID)
+{
+    ssize_t readBytes, writeBytes;            // Number of bytes written to / read from the socket
+    char readBuffer[1000], writeBuffer[1000]; // Buffer for reading from / writing to the client
+    char tempBuffer[1000];
+    struct Student student;
+
+    int ID;
+
+    bzero(readBuffer, sizeof(readBuffer));
+    bzero(writeBuffer, sizeof(writeBuffer));
+
+    
+
+    // Append the request for LOGIN ID message
+    strcat(writeBuffer, "\n");
+    strcat(writeBuffer, LOGIN_ID);
+
+    writeBytes = write(connFD, writeBuffer, strlen(writeBuffer));
+    if (writeBytes == -1)
+    {
+        perror("Error writing WELCOME & LOGIN_ID message to the client!");
+        return false;
+    }
+
+    readBytes = read(connFD, readBuffer, sizeof(readBuffer));
+    if (readBytes == -1)
+    {
+        perror("Error reading login ID from client!");
+        return false;
+    }
+
+    bool userFound = false;
+
+    
+    bzero(tempBuffer, sizeof(tempBuffer));
+    strcpy(tempBuffer, readBuffer);
+    // strtok(tempBuffer, "-");
+    ID = atoi(readBuffer);
+
+    int studentFileFD = open(STUDENT_FILE, O_RDONLY);
+    if (studentFileFD == -1)
+    {
+        perror("Error opening customer file in read mode!");
+        return false;
+    }
+
+    off_t offset = lseek(studentFileFD, ID * sizeof(struct Student), SEEK_SET);
+    if (offset >= 0)
+    {
+        struct flock lock = {F_RDLCK, SEEK_SET, ID * sizeof(struct Student), sizeof(struct Student), getpid()};
+
+        int lockingStatus = fcntl(studentFileFD, F_SETLKW, &lock);
+        if (lockingStatus == -1)
+        {
+            perror("Error obtaining read lock on student record!");
+            return false;
+        }
+
+        readBytes = read(studentFileFD, &student, sizeof(struct Student));
+        if (readBytes == -1)
+        {
+            ;
+            perror("Error reading student record from file!");
+        }
+
+        lock.l_type = F_UNLCK;
+        fcntl(studentFileFD, F_SETLK, &lock);
+
+        
+
+        if (student.id ==atoi(readBuffer))
+            userFound = true;
+        close(studentFileFD);
+    }
+    else
+    {
+        writeBytes = write(connFD, STUDENT_LOGIN_ID_DOESNT_EXIT, strlen(STUDENT_LOGIN_ID_DOESNT_EXIT));
+    }
+
+    if (userFound)
+    {
+        bzero(writeBuffer, sizeof(writeBuffer));
+        writeBytes = write(connFD, PASSWORD, strlen(PASSWORD));
+        if (writeBytes == -1)
+        {
+            perror("Error writing PASSWORD message to client!");
+            return false;
+        }
+
+        bzero(readBuffer, sizeof(readBuffer));
+        readBytes = read(connFD, readBuffer, sizeof(readBuffer));
+        if (readBytes == 1)
+        {
+            perror("Error reading password from the client!");
+            return false;
+        }
+
+        char *hashedPassword= crypt(readBuffer, SALT_BAE);
+
+        
+        if (strcmp(hashedPassword, student.password) == 0)
+        {
+            *ptrToStudentID = student;
+            return true;
+        }
+    
+
+        bzero(writeBuffer, sizeof(writeBuffer));
+        writeBytes = write(connFD, INVALID_PASSWORD, strlen(INVALID_PASSWORD));
+    }
+    else
+    {
+        bzero(writeBuffer, sizeof(writeBuffer));
+        writeBytes = write(connFD, INVALID_LOGIN, strlen(INVALID_LOGIN));
+    }
+
+    return false;
+}
 
 bool login_handler(bool isAdmin, int connFD, struct Customer *ptrToCustomerID)
 {
@@ -66,7 +186,7 @@ bool login_handler(bool isAdmin, int connFD, struct Customer *ptrToCustomerID)
 
     if (isAdmin)
     {
-        // if (strcmp(readBuffer, ADMIN_LOGIN_ID) == 0)
+        if (strcmp(readBuffer, ADMIN_LOGIN_ID) == 0)
             userFound = true;
     }
     else
