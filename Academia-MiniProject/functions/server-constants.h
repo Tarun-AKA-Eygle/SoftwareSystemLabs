@@ -30,7 +30,7 @@
 #define STUDENT_ID_DOESNT_EXIT "No STUDENT could be found for the given ID"
 #define CUSTOMER_LOGIN_ID_DOESNT_EXIT "No customer could be found for the given login ID$"
 #define STUDENT_LOGIN_ID_DOESNT_EXIT "No student could be found for the given login ID$"
-
+#define FACULTY_LOGIN_ID_DOESNT_EXIT "No FACULTY could be found for the given login ID$"
 #define ACCOUNT_ID_DOESNT_EXIT "No account could be found for the given account number"
 
 #define TRANSACTIONS_NOT_FOUND "No transactions were performed on this account by the customer!^"
@@ -52,6 +52,11 @@
 #define ADMIN_ADD_STUDENT_EMAIL "Enter Email : "
 #define ADMIN_ADD_STUDENT_ADDRESS "Enter Address : "
 
+#define FACULTY_ADD_COURSE_NAME "Enter Course Name : "
+#define FACULTY_ADD_COURSE_DEPARTMENT "Enter Department : "
+#define FACULTY_ADD_COURSE_SEAT "Enter No. of seats : "
+#define FACULTY_ADD_COURSE_CREDIT "Enter course credits : "
+
 #define ADMIN_ADD_CUSTOMER_PRIMARY "Enter the details for the primary customer\n"
 #define ADMIN_ADD_CUSTOMER_SECONDARY "Enter the details for the secondary customer\n"
 #define ADMIN_ADD_CUSTOMER_NAME "What is the customer's name?"
@@ -67,6 +72,7 @@
 #define ADMIN_ADD_ACCOUNT_NUMBER "The newly created account's number is :"
 #define ADMIN_CUSTOMER_CREATED "Student Created Successfully!\nStudent Id.Generated is ->"
 #define ADMIN_FACULTY_CREATED "Faculty Created Successfully!\nFaculty Id.Generated is ->"
+#define COURSE_CREATED "Course Created Successfully!\nCourse Id.Generated is ->"
 
 // DELETE ACCOUNT
 #define ADMIN_DEL_ACCOUNT_NO "What is the account number of the account you want to delete?"
@@ -86,6 +92,12 @@
 
 #define ADMIN_MOD_STUDENT_SUCCESS "The required modification was successfully made!\nYou'll now be redirected to the main menu!^"
 
+#define FACULTY_MOD_COURSE_ID "Enter the ID of the course who's information you want to edit"
+#define FACULTY_MOD_COURSE_MENU "Which information would you like to modify?\n1. Name 2. Email 3. Address 4. Designation\nPress any other key to cancel"
+#define FACULTY_MOD_COURSE_NAME "What's the updated course name going to be?"
+#define FACULTY_MOD_COURSE_DEPARTMENT "What's the updated department going to be?"
+#define FACULTY_MOD_COURSE_SEATS "What's the updated no. of seats going to be?"
+#define FACULTY_MOD_COURSE_CREDITS "What's the updated course credits going to be?"
 
 #define ADMIN_MOD_FACULTY_ID "Enter the ID of the faculty who's information you want to edit"
 #define ADMIN_MOD_FACULTY_MENU "Which information would you like to modify?\n1. Name 2. Email 3. Address 4. Designation\nPress any other key to cancel"
@@ -123,7 +135,7 @@
 #define CUSTOMER_MENU "1. Get Customer Details\n2. Deposit Money\n3. Withdraw Money\n4. Get Balance\n5. Get Transaction information\n6. Change Password\nPress any other key to logout"
 
 #define STUDENT_MENU "...............Welcome to Student Menu.............\n1. View All Courses\n2. Enroll (pick) New Course\n3. Drop Course\n4. View Enrolled Course Details\n5. Changed Password\n6. Logout and Exit\nEnter Your Choice:"
-
+#define FACULTY_MENU "...............Welcome to Faculty Menu.............\n1. View Offering Courses\n2. Add new Course\n3. Remove Course from Catalog\n4. Update Course Details\n5. Changed Password\n6. Logout and Exit\nEnter Your Choice:"
 #define STUDENT_MOD_PASSWORD "Enter the new password"
 
 #define ACCOUNT_DEACTIVATED "It seems your account has been deactivated!^"
@@ -152,4 +164,5 @@
 
 #define STUDENT_FILE "./records/students"
 #define FACULTY_FILE "./records/faculty"
+#define COURSE_FILE "./records/course"
 #endif

@@ -180,7 +180,7 @@ bool add_faculty(int connFD)
     }
 
     strcpy(newFaculty.email, readBuffer);
-
+    newFaculty.noOfCourse=0;
     sprintf(writeBuffer, "%s", ADMIN_ADD_STUDENT_ADDRESS);
     writeBytes = write(connFD, writeBuffer, sizeof(writeBuffer));
 

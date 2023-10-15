@@ -104,12 +104,12 @@ void connection_handler(int connectionFileDescriptor)
                 admin_operation_handler(connectionFileDescriptor);
                 break;
             case 2:
-                // Customer
+                // Faculty
                 // customer_operation_handler(connectionFileDescriptor);
-                // faculty_operation_handler(connectionFileDescriptor);
+                faculty_operation_handler(connectionFileDescriptor);
                 break;
             case 3:
-                // Customer
+                // Student
                 // customer_operation_handler(connectionFileDescriptor);
                 student_operation_handler(connectionFileDescriptor);
                 break;
