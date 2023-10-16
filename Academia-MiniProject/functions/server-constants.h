@@ -83,6 +83,8 @@
 #define ADMIN_ACTIVE_STUDENT_ID "Enter the ID of the STUDENT who's account you want to activate"    
 #define ADMIN_DEACTIVE_STUDENT_ID "Enter the ID of the STUDENT who's account you want to deactivate"
 
+#define FACULTY_DEL_COURSE_ID "Enter the ID of the Course that you wanna delete"
+
 #define ADMIN_MOD_STUDENT_ID "Enter the ID of the STUDENT who's information you want to edit"
 #define ADMIN_MOD_STUDENT_MENU "Which information would you like to modify?\n1. Name 2. Age 3. Email 4. Address\nPress any other key to cancel"
 #define ADMIN_MOD_STUDENT_NEW_NAME "What's the updated value for name?"
@@ -92,8 +94,12 @@
 
 #define ADMIN_MOD_STUDENT_SUCCESS "The required modification was successfully made!\nYou'll now be redirected to the main menu!^"
 
+#define COURSE_MOD_DELETE_SUCCESS "The course deletion was successfull!\nYou'll now be redirected to the main menu!^"
+
+#define COURSE_MOD_SUCCESS "The course modification was successfull!\nYou'll now be redirected to the main menu!^"
+
 #define FACULTY_MOD_COURSE_ID "Enter the ID of the course who's information you want to edit"
-#define FACULTY_MOD_COURSE_MENU "Which information would you like to modify?\n1. Name 2. Email 3. Address 4. Designation\nPress any other key to cancel"
+#define FACULTY_MOD_COURSE_MENU "Which information would you like to modify?\n1. Name 2. Department 3. No of seats 4. Course Credit\nPress any other key to cancel"
 #define FACULTY_MOD_COURSE_NAME "What's the updated course name going to be?"
 #define FACULTY_MOD_COURSE_DEPARTMENT "What's the updated department going to be?"
 #define FACULTY_MOD_COURSE_SEATS "What's the updated no. of seats going to be?"
