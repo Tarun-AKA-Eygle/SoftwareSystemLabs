@@ -293,7 +293,6 @@ bool enroll_course(int connFD){
         perror("Couldn't obtain lock on Course record!");
         return false;
     }
-    if(course.active==true && course.noOfSeats>course.enrollment)
     readBytes = read(courseFileDescriptor, &course, sizeof(struct Course));
     if (readBytes == -1 )
     {
@@ -307,18 +306,19 @@ bool enroll_course(int connFD){
 
     close(courseFileDescriptor);
 
-    
     newEnrollment.active=true;
-    newEnrollment.course_id=courseID;
+    newEnrollment.course_id=course.id;
     newEnrollment.student_id=loggedInStudent.id;
 
     int EnrollFileDescriptor = open(ENROLLMENT_FILE, O_CREAT | O_APPEND | O_WRONLY, S_IRWXU);
+
     if (EnrollFileDescriptor == -1)
     {
         perror("Error while creating / opening Student file!");
         return false;
     }
     writeBytes = write(EnrollFileDescriptor, &newEnrollment, sizeof(newEnrollment));
+
     if (writeBytes == -1)
     {
         perror("Error while writing Student record to file!");
@@ -440,7 +440,6 @@ bool view_enroll_course(int connFD){
         if(enroll.student_id==loggedInStudent.id){
             lseek(courseFileDescriptor, 0, SEEK_SET);
             while (read(courseFileDescriptor, &course, sizeof(struct Course)) == sizeof(struct Course)){
-                printf("%d %d %d %d\n",course.id,enroll.course_id,enroll.active,course.active);
                 if(course.id==enroll.course_id && enroll.active==true && course.active==true){
                     bzero(tempBuffer, sizeof(tempBuffer));
                     sprintf(tempBuffer, "-------------------------------------------------\nCourse Details - \n\tCourse ID : %d\n\tCourse Name : %s\n\tCourse Department : %s\n\tCourse Seats : %d\n\tCourse Credit : %d", course.id, course.name, course.department,course.noOfSeats,course.courseCredit);
