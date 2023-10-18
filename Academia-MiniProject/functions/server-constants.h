@@ -57,6 +57,9 @@
 #define FACULTY_ADD_COURSE_SEAT "Enter No. of seats : "
 #define FACULTY_ADD_COURSE_CREDIT "Enter course credits : "
 
+#define STUDENT_ENROL_COURSE "Enter Course ID to be Enrolled : "
+#define STUDENT_UNENROL_COURSE "Enter Course ID to be Unenrolled : "
+
 #define ADMIN_ADD_CUSTOMER_PRIMARY "Enter the details for the primary customer\n"
 #define ADMIN_ADD_CUSTOMER_SECONDARY "Enter the details for the secondary customer\n"
 #define ADMIN_ADD_CUSTOMER_NAME "What is the customer's name?"
@@ -73,6 +76,8 @@
 #define ADMIN_CUSTOMER_CREATED "Student Created Successfully!\nStudent Id.Generated is ->"
 #define ADMIN_FACULTY_CREATED "Faculty Created Successfully!\nFaculty Id.Generated is ->"
 #define COURSE_CREATED "Course Created Successfully!\nCourse Id.Generated is ->"
+#define ENROLLMENT_CREATED "Successfully! Enrolled in course in course id ->"
+#define ENROLLMENT_DELETED "Successfully! Unenrolled in course in course id ->"
 
 // DELETE ACCOUNT
 #define ADMIN_DEL_ACCOUNT_NO "What is the account number of the account you want to delete?"
@@ -135,7 +140,7 @@
 #define STUDENT_LOGIN_SUCCESS "Login Successful!"
 #define STUDENT_LOGOUT "Logging out!$"
 
-#define CUSTOMER_LOGOUT "Logging you out now dear customer! Good bye!$"
+#define CUSTOMER_LOGOUT "Logging out!$"
 
 // ADMIN MENU
 #define CUSTOMER_MENU "1. Get Customer Details\n2. Deposit Money\n3. Withdraw Money\n4. Get Balance\n5. Get Transaction information\n6. Change Password\nPress any other key to logout"
@@ -171,4 +176,5 @@
 #define STUDENT_FILE "./records/students"
 #define FACULTY_FILE "./records/faculty"
 #define COURSE_FILE "./records/course"
+#define ENROLLMENT_FILE "./records/enroll"
 #endif

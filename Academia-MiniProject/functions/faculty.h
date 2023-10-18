@@ -9,7 +9,7 @@ struct Faculty loggedInFaculty;
 bool faculty_operation_handler(int connFD);
 bool change_faculty_password(int connFD);
 bool add_course(int connFD);
-bool view_all_course(int connFD);
+bool view_course(int connFD);
 bool remove_course(int connFD);
 bool update_course(int connFD);
 // =====================================================
@@ -50,7 +50,7 @@ bool faculty_operation_handler(int connFD)
             switch (choice)
             {
             case 1:
-                view_all_course(connFD);
+                view_course(connFD);
                 break;
             case 2:
                 add_course(connFD);
@@ -529,6 +529,7 @@ bool add_course(int connFD){
     }
 
     newCourse.noOfSeats = atoi(readBuffer);
+    newCourse.enrollment=0;
     newCourse.active=true;
     sprintf(writeBuffer, "%s", FACULTY_ADD_COURSE_CREDIT);
     writeBytes = write(connFD, writeBuffer, sizeof(writeBuffer));
@@ -616,7 +617,7 @@ bool add_course(int connFD){
 
 
 }
-bool view_all_course(int connFD)
+bool view_course(int connFD)
 {
     ssize_t readBytes, writeBytes;             // Number of bytes read from / written to the socket
     char readBuffer[1000], writeBuffer[10000]; // A buffer for reading from / writing to the socket

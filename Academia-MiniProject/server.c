@@ -13,7 +13,7 @@
 
 #include "./functions/server-constants.h"
 #include "./functions/admin.h"
-// #include "./functions/customer.h"
+
 #include "./functions/faculty.h"
 #include "./functions/student.h"
 

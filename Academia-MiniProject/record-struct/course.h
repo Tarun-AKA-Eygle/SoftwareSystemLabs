@@ -11,6 +11,7 @@ struct Course
     int noOfSeats;
     int courseCredit;
     bool active;
+    int enrollment;
 };
 
 #endif

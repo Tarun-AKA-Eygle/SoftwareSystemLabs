@@ -6,10 +6,7 @@
 // Function Prototypes =================================
 
 bool admin_operation_handler(int connFD);
-bool add_account(int connFD);
-int add_customer(int connFD, bool isPrimary, int newAccountNumber);
-bool delete_account(int connFD);
-bool modify_customer_info(int connFD);
+
 
 bool add_student(int connFD);
 bool view_student(int connFD);
@@ -27,7 +24,7 @@ bool modify_faculty_info(int connFD);
 bool admin_operation_handler(int connFD)
 {
 
-    if (login_handler(true, connFD, NULL))
+    if (login_handler(connFD))
     {
         ssize_t writeBytes, readBytes;            // Number of bytes read from / written to the client
         char readBuffer[1000], writeBuffer[1000]; // A buffer used for reading & writing to the client
