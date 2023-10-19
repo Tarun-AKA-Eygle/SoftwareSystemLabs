@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 23.c
+Author : Tarun Sharma
+Description : A program to print the maximum number of files can be opened within a process and size of a pipe.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

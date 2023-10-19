@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 15.c
+Author : Tarun Sharma
+Description : A simple program to send some data from parent to the child process.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <sys/types.h>
        #include <sys/wait.h>
        #include <stdio.h>

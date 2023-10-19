@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 17a.c
+Author : Tarun Sharma
+Description : A program to execute ls -l | wc. a. use dup b. use dup2 c. use fcntl
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

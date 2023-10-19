@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 16.c
+Author : Tarun Sharma
+Description : A program to send and receive data from parent to child vice versa. Use two way communication.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

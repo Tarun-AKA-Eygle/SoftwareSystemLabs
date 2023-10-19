@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 19b.c
+Author : Tarun Sharma
+Description : A program create a FIFO file by a. mknod system call b. mkfifo library function
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>

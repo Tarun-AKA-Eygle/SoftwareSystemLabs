@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 28.c
+Author : Tarun Sharma
+Description : a program to change the exiting message queue permission.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>

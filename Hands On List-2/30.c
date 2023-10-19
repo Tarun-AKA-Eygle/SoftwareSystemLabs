@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 30.c
+Author : Tarun Sharma
+Description : a program to remove the message queue.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

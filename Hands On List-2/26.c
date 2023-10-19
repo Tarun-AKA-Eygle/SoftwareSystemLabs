@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 26.c
+Author : Tarun Sharma
+Description : A program to send messages to the message queue.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

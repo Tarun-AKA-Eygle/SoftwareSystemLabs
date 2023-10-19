@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 33server.c
+Author : Tarun Sharma
+Description : a program to communicate between two machines using socket.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 31a.c
+Author : Tarun Sharma
+Description : a program to create a semaphore and initialize value to the semaphore.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <semaphore.h>

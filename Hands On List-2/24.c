@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 24.c
+Author : Tarun Sharma
+Description : A program to create a message queue and print the key and message queue id.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>

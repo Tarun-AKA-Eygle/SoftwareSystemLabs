@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 32.c
+Author : Tarun Sharma
+Description : a program to implement semaphore to protect any critical section.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

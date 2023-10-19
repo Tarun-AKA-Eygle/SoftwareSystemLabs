@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 14.c
+Author : Tarun Sharma
+Description : a simple program to create a pipe, write to the pipe, read from pipe and display on the monitor.
+Date: 15th Sep, 2023.
+============================================================================
+*/
 #include <sys/types.h>
        #include <sys/wait.h>
        #include <stdio.h>

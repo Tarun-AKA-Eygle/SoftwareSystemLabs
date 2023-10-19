@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 25.c
+Author : Tarun Sharma
+Description : A program to print a message queue's structure.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>

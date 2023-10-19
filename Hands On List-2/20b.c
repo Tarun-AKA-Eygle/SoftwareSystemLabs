@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 20b.c
+Author : Tarun Sharma
+Description : Two programs so that both can communicate by FIFO -Use one way communication.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 //Reader
 #include <stdio.h>
 #include <stdlib.h>

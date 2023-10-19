@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 21a.c
+Author : Tarun Sharma
+Description : Two programs so that both can communicate by FIFO -Use two way communications.
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 27a.c
+Author : Tarun Sharma
+Description : A program to receive messages from the message queue. a. with 0 as a flag b. with IPC_NOWAIT as a flag
+Date: 5th Sep, 2023.
+============================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
